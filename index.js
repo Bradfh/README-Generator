@@ -62,39 +62,38 @@ inquirer
   function generateMarkdown(data) {
   const { title, description, installation, usage, contribution, license, test, github, email } = data;
   return `
-
-    ## License
-    ${renderLicenseBadge(license)}
+  ## License
+  ${renderLicenseBadge(license)}
     
-    # ${title}
+  ${title}
   
-    ## Description
-    ${description}
+  ## Description
+  ${description}
     
-    ## Table of Contents
+  ## Table of Contents
     
-    - [Description](#description)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Contribution](#contribution)
-    - [Test](#test)
-    - [Questions](#questions)
-    - [License](#license)
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contribution](#contribution)
+  - [Test](#test)
+  - [Questions](#questions)
+  - [License](#license)
 
-    ## Installation
-    ${installation}
+  ## Installation
+  ${installation}
 
-    ## Usage
-    ${usage}
+  ## Usage
+  ${usage}
 
-    ## Contribution
-    ${contribution}
+  ## Contribution
+  ${contribution}
 
-    ## Test
-    ${test}
+  ## Test
+  ${test}
 
-    ## Questions
-    If you have any questions, please contact me at ${email} or visit my GitHub page at https://www.github.com/${github}
+  ## Questions
+  If you have any questions, please contact me at ${email} or visit my GitHub page at https://www.github.com/${github}
   `
 }
 
