@@ -62,7 +62,6 @@ inquirer
     },
   ])
   .then((data) => {
-    console.log(data);
     const markdownContent = generateMarkdown(data);
     fs.writeFile('README.md', markdownContent, (err) =>
       err ? console.log(err) : console.log('Successfully created README.md!'));
@@ -73,7 +72,11 @@ inquirer
   function generateMarkdown(data) {
   const { title, description, installation, usage, contribution, license, test, github, email } = data;
   const videoPath = data.videoPath || '';
-  const videoMarkdown = videoPath ? `![Video Walkthrough](${videoPath})` : '';
+    const videoMarkdown = videoPath ? `<video width="640" height="480" controls>
+         <source src="${videoPath}" type="video/mp4">
+         Your browser does not support the video tag.
+       </video>`
+      : '';
   return `
   ## License
   \n${renderLicenseBadge(data.license)}
