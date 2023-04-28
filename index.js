@@ -53,8 +53,8 @@ inquirer
   .then((data) => {
     console.log(data);
     const markdownContent = generateMarkdown(data);
-    fs.writeFile('README1.md', markdownContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created README.md!'));
+    fs.writeFile('test.md', markdownContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created test.md!'));
   });
 
   
