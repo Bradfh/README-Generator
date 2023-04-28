@@ -22,7 +22,7 @@
   ## Installation
   To install you will need to first clone the repository to your local environment.  After that use your CLI to navigate to the folder where the git is located.  Type 'npm i' to install dependencies (inquirer for this app).  Once inquirer is installed you can use Node to run the script.
 
-  [![Video Thumbnail](./media/thumbnail.png)](./medio/Walkthrough.webm)
+  [![Video Thumbnail](./media/thumbnail.png)](./media/Walkthrough.webm)
        
 	Click the thumbnail above to view the video.
 >
