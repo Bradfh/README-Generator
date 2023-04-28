@@ -25,8 +25,14 @@ inquirer
     },
     {
       type: 'input',
+      name: 'thumbnailPath',
+      message: 'Please provide the file path for the video thumbnail (e.g. ./media/thumbnail.png). (Optional)',
+      when: (answers) => answers.addVideo,
+    },
+    {
+      type: 'input',
       name: 'videoPath',
-      message: 'Please enter the file path for the video (e.g., ./videos/video.mp4).  (Optional)',
+      message: 'Please enter the file path for the video (e.g., ./media/video.mp4).  (Optional)',
       when: (answers) => answers.addVideo,
     },
     {
@@ -72,10 +78,10 @@ inquirer
   function generateMarkdown(data) {
   const { title, description, installation, usage, contribution, license, test, github, email } = data;
   const videoPath = data.videoPath || '';
-    const videoMarkdown = videoPath ? `<video width="640" height="480" controls>
-         <source src="${videoPath}" type="video/mp4">
-         Your browser does not support the video tag.
-       </video>`
+  const thumbnailPath = data.thumbnailPath || '';
+    const videoMarkdown = videoPath
+      ? `[![Video Thumbnail](${thumbnailPath})](${videoPath})
+       \nClick the thumbnail above to view the video.`
       : '';
   return `
   ## License
