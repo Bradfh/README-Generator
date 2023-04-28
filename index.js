@@ -19,6 +19,17 @@ inquirer
       message: 'Please provide installation instructions for your project. (Required)',
     },
     {
+      type: 'confirm',
+      name: 'addVideo',
+      message: 'Would you like to add a video file path to the README? (Optional)',
+    },
+    {
+      type: 'input',
+      name: 'videoPath',
+      message: 'Please enter the file path for the video (e.g., ./videos/video.mp4).  (Optional)',
+      when: (answers) => answers.addVideo,
+    },
+    {
       type: 'input',
       name: 'usage',
       message: 'Please provide usage information for your project. (Required)',
@@ -29,7 +40,7 @@ inquirer
       message: 'Please provide contribution guidelines for your project. (Required)',
     },
     {
-      type: 'checkbox',
+      type: 'list',
       name: 'license',
       message: 'Please select a license for your project. (Required)',
       choices: ['MIT', 'Apache', 'GPL', 'BSD', 'None'],
@@ -53,17 +64,20 @@ inquirer
   .then((data) => {
     console.log(data);
     const markdownContent = generateMarkdown(data);
-    fs.writeFile('test.md', markdownContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created test.md!'));
+    fs.writeFile('README.md', markdownContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created README.md!'));
   });
 
   
   
   function generateMarkdown(data) {
   const { title, description, installation, usage, contribution, license, test, github, email } = data;
+  const videoPath = data.videoPath || '';
+  const videoMarkdown = videoPath ? `![Video Walkthrough](${videoPath})` : '';
   return `
   ## License
-  ${renderLicenseBadge(license)}
+  \n${renderLicenseBadge(data.license)}
+  
     
   ${title}
   
@@ -82,6 +96,8 @@ inquirer
 
   ## Installation
   ${installation}
+
+  ${videoMarkdown}
 
   ## Usage
   ${usage}
@@ -102,17 +118,24 @@ inquirer
 
 function renderLicenseBadge(license) {
   let yourLicense = '';
+  let licenseLink = '';
   if (license === 'MIT') {
     yourLicense = '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)';
+    licenseLink = 'https://choosealicense.com/licenses/mit/';
   }
   if (license === 'Apache') {
-    yourLicense = '![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)';
+    yourLicense = '![License: Apache](https://img.shields.io/badge/License-Apache%202.0-blue.svg)';
+    licenseLink = 'https://choosealicense.com/licenses/apache-2.0/';
   }
   if (license === 'GPL') {
     yourLicense = '![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)';
+    licenseLink = 'https://choosealicense.com/licenses/gpl-3.0/';
   }
   if (license === 'BSD') {
-    yourLicense = '![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)';
+    yourLicense = '![License: BSD](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)';
+    licenseLink = 'https://opensource.org/license/BSD-3-clause/';
   }
-  return yourLicense;
+
+  const licenseMd = `[${yourLicense}](${licenseLink})`
+  return licenseMd;
 }
