@@ -22,7 +22,14 @@
   ## Installation
   clone, navigate to file, npm i, type node index.js
 
+
   
+
+  [![Video Thumbnail](./media/thumbnail.png)](./media/Walkthrough.webm)
+       
+	Click the thumbnail above to view the video.
+
+
 
   ## Usage
   almost the same as installation
