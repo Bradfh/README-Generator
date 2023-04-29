@@ -69,20 +69,20 @@ inquirer
   ])
   .then((data) => {
     const markdownContent = generateMarkdown(data);
-    fs.writeFile('sample.md', markdownContent, (err) =>
+    fs.writeFile('README.md', markdownContent, (err) =>
       err ? console.log(err) : console.log('Successfully created README.md!'));
   });
 
-  
-  
-  function generateMarkdown(data) {
+
+
+function generateMarkdown(data) {
   const { title, description, installation, usage, contribution, license, test, github, email } = data;
   const videoPath = data.videoPath || '';
   const thumbnailPath = data.thumbnailPath || '';
-    const videoMarkdown = videoPath
-      ? `[![Video Thumbnail](${thumbnailPath})](${videoPath})
+  const videoMarkdown = videoPath
+    ? `[![Video Thumbnail](${thumbnailPath})](${videoPath})
        \nClick the thumbnail above to view the video.`
-      : '';
+    : '';
   return `
   ## License
   \n${renderLicenseBadge(data.license)}
